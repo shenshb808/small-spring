@@ -11,6 +11,9 @@ public class BeanDefinition {
 
     private Class beanClass;
 
+    /**
+     * 属性定义
+     */
     private PropertyValues propertyValues;
 
     public BeanDefinition(Class beanClass) {
