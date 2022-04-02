@@ -8,6 +8,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
+/**
+ * 资源加载 实现
+ */
 public class UrlResource implements Resource{
 
     private final URL url;

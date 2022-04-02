@@ -4,17 +4,18 @@ import cn.bugstack.springframework.core.io.DefaultResourceLoader;
 import cn.bugstack.springframework.core.io.ResourceLoader;
 
 /**
- * Abstract base class for bean definition readers which implement
- * the {@link BeanDefinitionReader} interface.
- * <p>
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+ * 实现getRegistry()和getResourceLoader()，以免污染具体的接口实现方法。
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
+    /**
+     * 通过构造方法注入 Bean定义注册
+     */
     private final BeanDefinitionRegistry registry;
 
+    /**
+     * 通过构造方法注入资源加载器
+     */
     private ResourceLoader resourceLoader;
 
     protected AbstractBeanDefinitionReader(BeanDefinitionRegistry registry) {

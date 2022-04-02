@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * 资源加载 实现
+ */
 public class FileSystemResource implements Resource {
 
     private final File file;

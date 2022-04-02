@@ -7,6 +7,9 @@ import java.net.URL;
 
 public class DefaultResourceLoader implements ResourceLoader {
 
+    /**
+     * 封装三种不同类型的资源处理方式
+     */
     @Override
     public Resource getResource(String location) {
         Assert.notNull(location, "Location must not be null");

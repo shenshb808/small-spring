@@ -5,16 +5,20 @@ import cn.bugstack.springframework.core.io.Resource;
 import cn.bugstack.springframework.core.io.ResourceLoader;
 
 /**
- * Simple interface for bean definition readers.
- *
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+ * Bean定义读取接口
  */
 public interface BeanDefinitionReader {
 
+    /**
+     * 给loadBeanDefinitions使用
+     * 实现会包装到抽象类中，以免污染具体的接口实现方法。
+     */
     BeanDefinitionRegistry getRegistry();
 
+    /**
+     * 给loadBeanDefinitions使用
+     * 实现会包装到抽象类中，以免污染具体的接口实现方法。
+     */
     ResourceLoader getResourceLoader();
 
     void loadBeanDefinitions(Resource resource) throws BeansException;
