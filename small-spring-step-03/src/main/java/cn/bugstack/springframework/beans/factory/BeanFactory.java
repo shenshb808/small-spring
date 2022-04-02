@@ -11,6 +11,9 @@ public interface BeanFactory {
 
     Object getBean(String name) throws BeansException;
 
+    /**
+     * 获取 Bean 时传递构造函数的入参信息
+     */
     Object getBean(String name, Object... args) throws BeansException;
 
 }

@@ -7,9 +7,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+ * 实例化策略：JDK 实例化
  */
 public class SimpleInstantiationStrategy implements InstantiationStrategy {
 
@@ -18,8 +16,10 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
         Class clazz = beanDefinition.getBeanClass();
         try {
             if (null != ctor) {
+                //有参实例化
                 return clazz.getDeclaredConstructor(ctor.getParameterTypes()).newInstance(args);
             } else {
+                //ctor为null则默认无参实例化
                 return clazz.getDeclaredConstructor().newInstance();
             }
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {

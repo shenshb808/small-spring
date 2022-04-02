@@ -12,6 +12,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     protected Object createBean(String beanName, BeanDefinition beanDefinition) throws BeansException {
         Object bean;
         try {
+            //创建bean对象，当前默认无参构造
             bean = beanDefinition.getBeanClass().newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             throw new BeansException("Instantiation of bean failed", e);

@@ -21,6 +21,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
         Object bean = null;
         try {
+            //封装获取Bean实例方法
             bean = createBeanInstance(beanDefinition, beanName, args);
         } catch (Exception e) {
             throw new BeansException("Instantiation of bean failed", e);
@@ -33,13 +34,17 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     protected Object createBeanInstance(BeanDefinition beanDefinition, String beanName, Object[] args) {
         Constructor constructorToUse = null;
         Class<?> beanClass = beanDefinition.getBeanClass();
+        //获取一个类中所有的构造函数
         Constructor<?>[] declaredConstructors = beanClass.getDeclaredConstructors();
+
         for (Constructor ctor : declaredConstructors) {
+            //简单处理，根据构造函数的参数数量来匹配,实际 Spring 源码中还需要比对入参类型
             if (null != args && ctor.getParameterTypes().length == args.length) {
                 constructorToUse = ctor;
                 break;
             }
         }
+        //获取实例化策略进行实例化
         return getInstantiationStrategy().instantiate(beanDefinition, beanName, constructorToUse, args);
     }
 

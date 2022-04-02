@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 单例 Bean 的注册功能
+ * 单例 Bean 的注册获取功能
  */
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
