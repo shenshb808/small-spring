@@ -5,6 +5,9 @@ import cn.hutool.core.lang.Assert;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * 默认的资源加载器
+ */
 public class DefaultResourceLoader implements ResourceLoader {
 
     /**

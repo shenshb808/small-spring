@@ -10,14 +10,14 @@ import cn.bugstack.springframework.core.io.ResourceLoader;
 public interface BeanDefinitionReader {
 
     /**
-     * 给loadBeanDefinitions使用
-     * 实现会包装到抽象类中，以免污染具体的接口实现方法。
+     * 注册Bean定义
+     * 由抽象类实现，以免污染具体的接口实现方法。
      */
     BeanDefinitionRegistry getRegistry();
 
     /**
-     * 给loadBeanDefinitions使用
-     * 实现会包装到抽象类中，以免污染具体的接口实现方法。
+     * 获取资源加载器
+     * 由抽象类实现，以免污染具体的接口实现方法。
      */
     ResourceLoader getResourceLoader();
 

@@ -94,8 +94,9 @@ public class ApiTest {
         // 1.初始化 BeanFactory
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-        // 2. 读取配置文件&注册Bean
+        // 2.初始化xml解析器
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
+        // 3.读取配置文件&注册Bean
         reader.loadBeanDefinitions("classpath:spring.xml");
 
         // 3. 获取Bean对象调用方法
