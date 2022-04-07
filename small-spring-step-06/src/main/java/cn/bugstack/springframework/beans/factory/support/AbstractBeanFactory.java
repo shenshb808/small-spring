@@ -14,7 +14,9 @@ import java.util.List;
  * 公众号：bugstack虫洞栈
  * Create by 小傅哥(fustack)
  * <p>
+ *
  * BeanDefinition注册表接口
+ *
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
 

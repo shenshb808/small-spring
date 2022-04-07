@@ -7,6 +7,9 @@ import cn.bugstack.springframework.beans.factory.HierarchicalBeanFactory;
  * facilities to configure a bean factory, in addition to the bean factory
  * client methods in the {@link cn.bugstack.springframework.beans.factory.BeanFactory}
  * interface.
+ *
+ * 可获取 BeanPostProcessor、BeanClassLoader等的一个配置化接口
+ *
  */
 public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry {
 

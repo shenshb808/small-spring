@@ -5,23 +5,20 @@ import cn.bugstack.springframework.beans.factory.ConfigurableListableBeanFactory
 import cn.bugstack.springframework.beans.factory.support.DefaultListableBeanFactory;
 
 /**
- * Base class for {@link cn.bugstack.springframework.context.ApplicationContext}
- * implementations which are supposed to support multiple calls to {@link #refresh()},
- * creating a new internal bean factory instance every time.
- * Typically (but not necessarily), such a context will be driven by
- * a set of config locations to load bean definitions from.
- *
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+ * 获取Bean工厂和加载资源
  */
 public abstract class AbstractRefreshableApplicationContext extends AbstractApplicationContext {
 
     private DefaultListableBeanFactory beanFactory;
 
+    /**
+     * 获取了 DefaultListableBeanFactory 的实例化以及对资源配置的加载操作 loadBeanDefinitions(beanFactory)
+     */
     @Override
     protected void refreshBeanFactory() throws BeansException {
+        // 创建bean工厂
         DefaultListableBeanFactory beanFactory = createBeanFactory();
+        // 加载BeanDefinition
         loadBeanDefinitions(beanFactory);
         this.beanFactory = beanFactory;
     }

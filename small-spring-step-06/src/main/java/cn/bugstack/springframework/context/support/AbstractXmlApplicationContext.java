@@ -8,12 +8,15 @@ import cn.bugstack.springframework.beans.factory.xml.XmlBeanDefinitionReader;
  * implementations, drawing configuration from XML documents containing bean definitions
  * understood by an {@link cn.bugstack.springframework.beans.factory.xml.XmlBeanDefinitionReader}.
  *
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+ * 上下文中对配置信息的加载
+ *
  */
 public abstract class AbstractXmlApplicationContext extends AbstractRefreshableApplicationContext {
 
+    /**
+     * 实现加载BeanDefinition
+     * @param beanFactory
+     */
     @Override
     protected void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) {
         XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory, this);
@@ -23,6 +26,9 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableA
         }
     }
 
+    /**
+     * 获取配置路径
+     */
     protected abstract String[] getConfigLocations();
 
 }
