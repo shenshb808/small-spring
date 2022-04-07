@@ -21,7 +21,8 @@ import java.util.Map;
 public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
 
     /**
-     * 模板模式
+     * 核心逻辑
+     * 运用模板模式
      */
     @Override
     public void refresh() throws BeansException {
