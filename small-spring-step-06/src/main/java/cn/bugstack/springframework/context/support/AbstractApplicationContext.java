@@ -25,13 +25,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
      */
     @Override
     public void refresh() throws BeansException {
-        // 1. 创建 BeanFactory，并加载 BeanDefinition
+        // 1. 创建 BeanFactory，并加载、解析、注册 配置文件中的 BeanDefinition
         refreshBeanFactory();
 
         // 2. 获取 BeanFactory
         ConfigurableListableBeanFactory beanFactory = getBeanFactory();
 
-        // 3. 在 Bean 实例化之前，执行 BeanFactoryPostProcessor
+        // 3. 在 Bean 实例化之前，执行 BeanFactoryPostProcessor,修改 BeanDefinition
         invokeBeanFactoryPostProcessors(beanFactory);
 
         // 4. 注册 BeanPostProcessor ,BeanPostProcessor需要提前于其他 Bean 对象实例化之前执行注册操作
@@ -41,12 +41,18 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
         beanFactory.preInstantiateSingletons();
     }
 
+    /**
+     * 创建bean工厂 + 加载BeanDefinition
+     */
     protected abstract void refreshBeanFactory() throws BeansException;
 
+    /**
+     * 获取bean工厂
+     */
     protected abstract ConfigurableListableBeanFactory getBeanFactory();
 
     private void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory) {
-        //获取所有 BeanFactoryPostProcessor
+        //获取所有 BeanFactoryPostProcessor 实例
         Map<String, BeanFactoryPostProcessor> beanFactoryPostProcessorMap = beanFactory.getBeansOfType(BeanFactoryPostProcessor.class);
         for (BeanFactoryPostProcessor beanFactoryPostProcessor : beanFactoryPostProcessorMap.values()) {
             //执行 BeanFactoryPostProcessor 实现逻辑
@@ -58,7 +64,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
      * 注册 BeanPostProcessor
      */
     private void registerBeanPostProcessors(ConfigurableListableBeanFactory beanFactory) {
-        //获取所有 BeanPostProcessor
+        //获取所有 BeanPostProcessor 实例
         Map<String, BeanPostProcessor> beanPostProcessorMap = beanFactory.getBeansOfType(BeanPostProcessor.class);
         for (BeanPostProcessor beanPostProcessor : beanPostProcessorMap.values()) {
             //添加到 BeanPostProcessor 缓存

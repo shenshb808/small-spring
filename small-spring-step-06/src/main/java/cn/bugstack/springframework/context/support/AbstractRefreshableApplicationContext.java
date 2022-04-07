@@ -5,7 +5,8 @@ import cn.bugstack.springframework.beans.factory.ConfigurableListableBeanFactory
 import cn.bugstack.springframework.beans.factory.support.DefaultListableBeanFactory;
 
 /**
- * 获取Bean工厂和加载资源
+ * 实现BeanFactory创建与BeanDefinition加载
+ * 实现获取BeanFactory
  */
 public abstract class AbstractRefreshableApplicationContext extends AbstractApplicationContext {
 
@@ -23,10 +24,16 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
         this.beanFactory = beanFactory;
     }
 
+    /**
+     * 创建bean工厂
+     */
     private DefaultListableBeanFactory createBeanFactory() {
         return new DefaultListableBeanFactory();
     }
 
+    /**
+     * 加载BeanDefinition
+     */
     protected abstract void loadBeanDefinitions(DefaultListableBeanFactory beanFactory);
 
     @Override
