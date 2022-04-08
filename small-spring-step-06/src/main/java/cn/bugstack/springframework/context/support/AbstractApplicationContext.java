@@ -73,26 +73,41 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
         }
     }
 
+    /**
+     * 实现 ListableBeanFactory
+     */
     @Override
     public <T> Map<String, T> getBeansOfType(Class<T> type) throws BeansException {
         return getBeanFactory().getBeansOfType(type);
     }
 
+    /**
+     * 实现 ListableBeanFactory
+     */
     @Override
     public String[] getBeanDefinitionNames() {
         return getBeanFactory().getBeanDefinitionNames();
     }
 
+    /**
+     * 实现 BeanFactory
+     */
     @Override
     public Object getBean(String name) throws BeansException {
         return getBeanFactory().getBean(name);
     }
 
+    /**
+     * 实现 BeanFactory
+     */
     @Override
     public Object getBean(String name, Object... args) throws BeansException {
         return getBeanFactory().getBean(name, args);
     }
 
+    /**
+     * 实现 BeanFactory
+     */
     @Override
     public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
         return getBeanFactory().getBean(name, requiredType);
