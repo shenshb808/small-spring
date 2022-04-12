@@ -10,7 +10,7 @@ import cn.bugstack.springframework.core.io.ResourceLoader;
 public interface BeanDefinitionReader {
 
     /**
-     * 注册Bean定义
+     * 获取 注册Bean定义类
      * 由抽象类实现，以免污染具体的接口实现方法。
      */
     BeanDefinitionRegistry getRegistry();
