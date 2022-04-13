@@ -1,15 +1,10 @@
 package cn.bugstack.springframework.beans.factory;
 
 /**
- * Interface to be implemented by beans that need to react once all their
- * properties have been set by a BeanFactory: for example, to perform custom
- * initialization, or merely to check that all mandatory properties have been set.
- *
  * 实现此接口的 Bean 对象，会在 BeanFactory 设置属性后作出相应的处理，如：执行自定义初始化，或者仅仅检查是否设置了所有强制属性。
  *
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+ * InitializingBean、DisposableBean，两个接口方法还是比较常用的，在一些需要结合 Spring 实现的组件中，经常会使用这两个方法来做一些参数的初始化和销毁操作。
+ *
  */
 public interface InitializingBean {
 

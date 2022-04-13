@@ -6,9 +6,8 @@ package cn.bugstack.springframework.beans.factory;
  * method if it disposes a cached singleton. An application context
  * is supposed to dispose all of its singletons on close.
  *
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+ * InitializingBean、DisposableBean，两个接口方法还是比较常用的，在一些需要结合 Spring 实现的组件中，经常会使用这两个方法来做一些参数的初始化和销毁操作。
+ *
  */
 public interface DisposableBean {
 
