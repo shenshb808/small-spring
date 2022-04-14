@@ -113,6 +113,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
             if (bean instanceof BeanNameAware) {
                 ((BeanNameAware) bean).setBeanName(beanName);
             }
+
+            // 为什么 ApplicationContextAware 需要提供 BeanPostProcessor 呢？
+            // 答案：由于 ApplicationContext 并不是在 AbstractAutowireCapableBeanFactory 中 createBean 方法下的内容，
+            //      所以需要像容器中注册 addBeanPostProcessor（在AbstractApplicationContext中的refresh方法中注册BeanPostProcessor时，
+            //      就将ApplicationContext通过构造函数塞到BeanPostProcessor中） ，再由 createBean 统一调用 applyBeanPostProcessorsBeforeInitialization 时进行操作。
         }
 
         // 1. 执行 BeanPostProcessor Before 处理

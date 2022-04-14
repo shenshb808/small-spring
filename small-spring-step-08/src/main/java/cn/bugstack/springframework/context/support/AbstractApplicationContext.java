@@ -17,9 +17,6 @@ import java.util.Map;
  * <p>
  * 抽象应用上下文
  * <p>
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
  */
 public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
 
@@ -32,6 +29,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
         ConfigurableListableBeanFactory beanFactory = getBeanFactory();
 
         // 3. 添加 ApplicationContextAwareProcessor，让继承自 ApplicationContextAware 的 Bean 对象都能感知所属的 ApplicationContext
+        // 问题：明明第五步会自动注册 BeanPostProcessor ，为什么还要在这边手动add呢？
+        // 答案：因为 ApplicationContextAwareProcessor 的构造函数需要传递 ApplicationContext 对象。第五步中获取 BeanPostProcessor 方式统一为 beanFactory.getBeansOfType。
         beanFactory.addBeanPostProcessor(new ApplicationContextAwareProcessor(this));
 
         // 4. 在 Bean 实例化之前，执行 BeanFactoryPostProcessor (Invoke factory processors registered as beans in the context.)
