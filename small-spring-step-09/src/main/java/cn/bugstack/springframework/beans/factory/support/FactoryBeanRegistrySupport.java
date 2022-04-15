@@ -20,6 +20,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 
     /**
      * Cache of singleton objects created by FactoryBeans: FactoryBean name --> object
+     *
      * 用于存放 FactoryBean 类型的单例类型的对象，避免重复创建。在日常使用用，基本也都是创建的单例对象
      */
     private final Map<String, Object> factoryBeanObjectCache = new ConcurrentHashMap<String, Object>();
@@ -31,6 +32,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 
     /**
      * 获取 FactoryBean#getObject() 方法
+     *
      * 因为既有缓存的处理也有对象的获取，所以额外提供了 getObjectFromFactoryBean 进行逻辑包装
      */
     protected Object getObjectFromFactoryBean(FactoryBean factory, String beanName) {
