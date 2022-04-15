@@ -11,14 +11,16 @@ import java.util.concurrent.ConcurrentHashMap;
  * {@link cn.bugstack.springframework.beans.factory.FactoryBean} instances,
  * integrated with {@link DefaultSingletonBeanRegistry}'s singleton management.
  * <p>
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+ *
+ * FactoryBean 注册服务
+ * 主要处理的就是关于 FactoryBean 此类对象的注册操作，之所以放到这样一个单独的类里，就是希望做到不同领域模块下只负责各自需要完成的功能，避免因为扩展导致类膨胀到难以维护
+ *
  */
 public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
 
     /**
      * Cache of singleton objects created by FactoryBeans: FactoryBean name --> object
+     * 用于存放 FactoryBean 类型的单例类型的对象，避免重复创建。在日常使用用，基本也都是创建的单例对象
      */
     private final Map<String, Object> factoryBeanObjectCache = new ConcurrentHashMap<String, Object>();
 
@@ -27,15 +29,23 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
         return (object != NULL_OBJECT ? object : null);
     }
 
+    /**
+     * 获取 FactoryBean#getObject() 方法
+     * 因为既有缓存的处理也有对象的获取，所以额外提供了 getObjectFromFactoryBean 进行逻辑包装
+     */
     protected Object getObjectFromFactoryBean(FactoryBean factory, String beanName) {
         if (factory.isSingleton()) {
+            // 单例从缓存中获取
             Object object = this.factoryBeanObjectCache.get(beanName);
             if (object == null) {
+                // 缓存中不存在时，调用 factory.getObject()
                 object = doGetObjectFromFactoryBean(factory, beanName);
+                // 塞入缓存
                 this.factoryBeanObjectCache.put(beanName, (object != null ? object : NULL_OBJECT));
             }
             return (object != NULL_OBJECT ? object : null);
         } else {
+            // 多例，直接调用 factory.getObject()
             return doGetObjectFromFactoryBean(factory, beanName);
         }
     }
