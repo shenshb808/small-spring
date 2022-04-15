@@ -17,8 +17,8 @@ public class ApplicationContextAwareProcessor implements BeanPostProcessor {
     }
 
     /**
-     * 由于 ApplicationContext 的获取并不能直接在创建 Bean 时候就可以拿到，所以需要在 refresh 操作时，
-     * 把 ApplicationContext 写入到一个包装的 BeanPostProcessor 中去，
+     * 由于 ApplicationContext 并不是在 AbstractAutowireCapableBeanFactory 中 createBean 方法下的内容，所以需要在 refresh 操作时，
+     * 把 ApplicationContext 写入到一个包装的 BeanPostProcessor 中去，再注册这个 BeanPostProcessor
      * 再由 AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization 方法调用。
      */
     @Override

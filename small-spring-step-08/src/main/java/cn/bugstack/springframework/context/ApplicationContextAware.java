@@ -12,6 +12,9 @@ import cn.bugstack.springframework.beans.factory.Aware;
  */
 public interface ApplicationContextAware extends Aware {
 
+    /**
+     * ApplicationContext 需要通过 BeanPostProcessor 传入
+     */
     void setApplicationContext(ApplicationContext applicationContext) throws BeansException;
 
 }
