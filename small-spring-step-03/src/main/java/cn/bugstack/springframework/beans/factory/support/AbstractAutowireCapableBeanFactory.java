@@ -12,6 +12,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
     private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
 
+    public InstantiationStrategy getInstantiationStrategy() {
+        return instantiationStrategy;
+    }
+
+    public void setInstantiationStrategy(InstantiationStrategy instantiationStrategy) {
+        this.instantiationStrategy = instantiationStrategy;
+    }
+
     @Override
     protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
         Object bean = null;
@@ -27,12 +35,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     /**
-     * 抽取 createBeanInstance，获取Bean实例
+     * 获取Bean实例
      */
     protected Object createBeanInstance(BeanDefinition beanDefinition, String beanName, Object[] args) {
         Constructor constructorToUse = null;
         Class<?> beanClass = beanDefinition.getBeanClass();
-        //获取一个类中所有的构造函数
+        // 获取一个类中所有的构造函数
         Constructor<?>[] declaredConstructors = beanClass.getDeclaredConstructors();
 
         for (Constructor ctor : declaredConstructors) {
@@ -45,13 +53,4 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         //获取实例化策略进行实例化
         return getInstantiationStrategy().instantiate(beanDefinition, beanName, constructorToUse, args);
     }
-
-    public InstantiationStrategy getInstantiationStrategy() {
-        return instantiationStrategy;
-    }
-
-    public void setInstantiationStrategy(InstantiationStrategy instantiationStrategy) {
-        this.instantiationStrategy = instantiationStrategy;
-    }
-
 }

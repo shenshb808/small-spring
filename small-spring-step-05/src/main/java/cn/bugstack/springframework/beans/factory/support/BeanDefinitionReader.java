@@ -6,6 +6,7 @@ import cn.bugstack.springframework.core.io.ResourceLoader;
 
 /**
  * Bean定义读取接口
+ * 接口管定义
  */
 public interface BeanDefinitionReader {
 

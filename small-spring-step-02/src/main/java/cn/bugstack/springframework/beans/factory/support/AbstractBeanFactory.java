@@ -5,11 +5,12 @@ import cn.bugstack.springframework.beans.factory.BeanFactory;
 import cn.bugstack.springframework.beans.factory.config.BeanDefinition;
 
 /**
- * 抽象类定义模板方法
+ * 抽象类“实现”接口定义，定义模板方法
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
 
     /**
+     * “实现”接口定义
      * 运用模板模式
      * 模板模式优点：统一收口通用核心方法的调用逻辑和标准定义，也就很好的控制了后续的实现者不用关心调用逻辑，按照统一方式执行。
      *            那么类的继承者只需要关心具体方法的逻辑实现即可。

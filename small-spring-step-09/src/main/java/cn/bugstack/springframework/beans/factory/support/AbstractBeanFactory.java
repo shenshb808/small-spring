@@ -53,6 +53,12 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
         return (T) getObjectForBeanInstance(bean, name);
     }
 
+    /**
+     * 获取 getObject 返回的对象
+     * @param beanInstance FactoryBean 实现
+     * @param beanName
+     * @return getObject返回的对象
+     */
     private Object getObjectForBeanInstance(Object beanInstance, String beanName) {
         if (!(beanInstance instanceof FactoryBean)) {
             // 不是 FactoryBean 类型直接返回

@@ -5,6 +5,7 @@ import cn.bugstack.springframework.core.io.ResourceLoader;
 
 /**
  * 实现getRegistry()和getResourceLoader()，以免污染具体的接口实现方法。
+ * 抽象类处理非接口功能外的注册Bean组件填充
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 

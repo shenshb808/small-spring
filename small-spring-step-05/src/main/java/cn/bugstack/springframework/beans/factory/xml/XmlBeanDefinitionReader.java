@@ -22,10 +22,17 @@ import java.io.InputStream;
  */
 public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
+    /**
+     * 初始化 BeanDefinition 注册类,采用默认加载器
+     * @param registry
+     */
     public XmlBeanDefinitionReader(BeanDefinitionRegistry registry) {
         super(registry);
     }
 
+    /**
+     * 初始化 BeanDefinition 注册类、资源加载器
+     */
     public XmlBeanDefinitionReader(BeanDefinitionRegistry registry, ResourceLoader resourceLoader) {
         super(registry, resourceLoader);
     }
@@ -41,22 +48,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         }
     }
 
-    @Override
-    public void loadBeanDefinitions(Resource... resources) throws BeansException {
-        for (Resource resource : resources) {
-            loadBeanDefinitions(resource);
-        }
-    }
-
-    @Override
-    public void loadBeanDefinitions(String location) throws BeansException {
-        ResourceLoader resourceLoader = getResourceLoader();
-        Resource resource = resourceLoader.getResource(location);
-        loadBeanDefinitions(resource);
-    }
-
     /**
-     * 解析XML处理Bean注册 核心逻辑
+     * 核心逻辑
+     * 解析 XML ，解析成 BeanDefinition ，然后注册
      */
     protected void doLoadBeanDefinitions(InputStream inputStream) throws ClassNotFoundException {
         Document doc = XmlUtil.readXML(inputStream);
@@ -103,9 +97,30 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             if (getRegistry().containsBeanDefinition(beanName)) {
                 throw new BeansException("Duplicate beanName[" + beanName + "] is not allowed");
             }
+
             // 注册 BeanDefinition
             getRegistry().registerBeanDefinition(beanName, beanDefinition);
         }
+    }
+
+    /**
+     * 重载
+     */
+    @Override
+    public void loadBeanDefinitions(Resource... resources) throws BeansException {
+        for (Resource resource : resources) {
+            loadBeanDefinitions(resource);
+        }
+    }
+
+    /**
+     * 重载
+     */
+    @Override
+    public void loadBeanDefinitions(String location) throws BeansException {
+        ResourceLoader resourceLoader = getResourceLoader();
+        Resource resource = resourceLoader.getResource(location);
+        loadBeanDefinitions(resource);
     }
 
 }

@@ -35,6 +35,9 @@ import java.util.logging.Logger;
  */
 public class ApiTest {
 
+    /**
+     * 之前手动 创建 + 注册 的方式
+     */
     @Test
     public void test_BeanFactory() {
         // 1.初始化 BeanFactory
@@ -89,6 +92,9 @@ public class ApiTest {
         System.out.println(content);
     }
 
+    /**
+     * XML 读取方式注册
+     */
     @Test
     public void test_xml() {
         // 1.初始化 BeanFactory
