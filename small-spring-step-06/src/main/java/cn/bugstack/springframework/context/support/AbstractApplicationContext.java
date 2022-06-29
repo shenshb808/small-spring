@@ -21,7 +21,7 @@ import java.util.Map;
 public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
 
     /**
-     * 核心逻辑
+     * 定义核心逻辑
      * 运用模板模式
      */
     @Override
@@ -52,11 +52,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
      */
     protected abstract ConfigurableListableBeanFactory getBeanFactory();
 
+    /**
+     * Bean定义已注册完，开始修改BeanDefinition
+     */
     private void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory) {
-        //获取所有 BeanFactoryPostProcessor 实例
+        // 获取所有 BeanFactoryPostProcessor 实例
         Map<String, BeanFactoryPostProcessor> beanFactoryPostProcessorMap = beanFactory.getBeansOfType(BeanFactoryPostProcessor.class);
         for (BeanFactoryPostProcessor beanFactoryPostProcessor : beanFactoryPostProcessorMap.values()) {
-            //执行 BeanFactoryPostProcessor 实现逻辑
+            // 执行 BeanFactoryPostProcessor 实现逻辑
             beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
         }
     }

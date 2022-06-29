@@ -9,6 +9,9 @@ import cn.bugstack.springframework.beans.factory.config.BeanFactoryPostProcessor
 
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
+    /**
+     * 可以自定义修改 BeanDefinition
+     */
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 
