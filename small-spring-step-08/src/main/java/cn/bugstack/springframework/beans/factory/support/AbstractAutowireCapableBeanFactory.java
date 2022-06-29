@@ -102,7 +102,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
     private Object initializeBean(String beanName, Object bean, BeanDefinition beanDefinition) {
 
-        // invokeAwareMethods
+        // invokeAwareMethods 感知调用操作
         if (bean instanceof Aware) {
             if (bean instanceof BeanFactoryAware) {
                 ((BeanFactoryAware) bean).setBeanFactory(this);
